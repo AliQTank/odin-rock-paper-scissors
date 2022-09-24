@@ -55,6 +55,16 @@ function singleRound(playerSelection, computerSelection){
 }
 
 
-let playerChoiceIs = "Rock"
+
+let choseWisely = (prompt('rock, paper or scissors')).toLowerCase();
+choseWisely = choseWisely.charAt(0).toUpperCase() + choseWisely.slice(1);
+
 let computerSelected = getComputerChoice();
-singleRound(playerChoiceIs, computerSelected);
+
+if (choseWisely === optionsToChose[0] || choseWisely === optionsToChose[1] || choseWisely === optionsToChose[2]){
+
+    singleRound(choseWisely, computerSelected);
+} else {
+    alert("no an option")
+}
+
