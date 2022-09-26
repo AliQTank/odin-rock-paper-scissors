@@ -8,6 +8,7 @@ const scissorsChoice = document.querySelector('#SCISSORS');
 const previaMatch = document.querySelector('.previa-match');
 const playerScoreMark = document.querySelector('.player-score');
 const cpuScoreMark = document.querySelector('.computer-score');
+const newGameButton = document.querySelector('#new-game');
 
 
 
@@ -71,8 +72,16 @@ Call the playRound function inside of this one to play a 5 round game
 that keeps score and reports a winner or loser at the end.*/
 
 function game() {
-    let choseWisely = (prompt('rock, paper or scissors')).toLowerCase();
-    choseWisely = choseWisely.charAt(0).toUpperCase() + choseWisely.slice(1);
+    let choseWisely = (prompt('rock, paper or scissors'));
+
+    if (choseWisely === null){
+        return
+
+    } else {
+        choseWisely = choseWisely
+        .toLowerCase()
+        .charAt(0).toUpperCase() + choseWisely.slice(1);
+    }
 
     let computerSelected = getComputerChoice();
 
@@ -85,6 +94,8 @@ function game() {
         game()
     }
 }
+
+newGameButton.addEventListener('click', game);
 
 game();
 
