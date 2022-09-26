@@ -9,6 +9,8 @@ const previaMatch = document.querySelector('.previa-match');
 const playerScoreMark = document.querySelector('.player-score');
 const cpuScoreMark = document.querySelector('.computer-score');
 const newGameButton = document.querySelector('#new-game');
+let playerCount = 0;
+let cpuCount = 0;
 
 
 
@@ -31,9 +33,11 @@ function singleRound(playerSelection, computerSelection){
     if (playerSelection === optionsToChose[0] ){
         switch (computerSelection) {
             case optionsToChose[1]:
+                cpuCount++
                 return "you loose, paper beats rock";
                 break;
             case optionsToChose[2]:
+                playerCount++
                 return "you win, rock beats scissors";
                 break;
             default:
@@ -43,9 +47,11 @@ function singleRound(playerSelection, computerSelection){
     } else if (playerSelection === optionsToChose[1]){
         switch (computerSelection) {
             case optionsToChose[0]:
+                playerCount++
                 return "you win!!, paper beats rock";
                 break;
             case optionsToChose[2]:
+                cpuCount++
                 return "you loose, scissor beats paper";
                 break;
             default:
@@ -55,9 +61,11 @@ function singleRound(playerSelection, computerSelection){
     } else if (playerSelection === optionsToChose[2]){
         switch (computerSelection) {
             case optionsToChose[0]:
+                cpuCount++
                 return "you loose, rock too solid and destroys scissors";
                 break;
             case optionsToChose[1]:
+                playerCount++
                 return "you win!!, paper cant take your blade";
                 break;
             default:
