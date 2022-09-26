@@ -9,6 +9,7 @@ const previaMatch = document.querySelector('.previa-match');
 const playerScoreMark = document.querySelector('.player-score');
 const cpuScoreMark = document.querySelector('.computer-score');
 const newGameButton = document.querySelector('#new-game');
+const resultsSection = document.querySelector('#results');
 let playerCount = 0;
 let cpuCount = 0;
 
@@ -24,8 +25,6 @@ function getComputerChoice(){
 
     return optionsToChose[randomChoiceFormula];
 }
-
-//getComputerChoice();
 
 //wirte a function with two parameters, playerselection and computerselection
 
@@ -80,6 +79,26 @@ function singleRound(playerSelection, computerSelection){
     }
 }
 
+//function endofgame to disable new game button, herotozero to restart counting
+//pending function to apply function after one winner 
+
+function endOfGame(){
+    newGameButton.disabled = true;
+    startNewRound = document.createElement('button');
+    startNewRound.textContent = 'Start new game';
+    resultsSection.appendChild(startNewRound);
+    startNewRound.addEventListener('click', heroToZero)
+}
+
+function heroToZero() {
+    playerCount = 0;
+    playerScoreMark.textContent = playerCount;
+    cpuCount = 0;
+    cpuScoreMark.textContent = cpuCount;
+    startNewRound.parentNode.removeChild(startNewRound);
+    newGameButton.disabled = false;
+}
+
 
 /* Write a NEW function called game(). 
 Call the playRound function inside of this one to play a 5 round game 
@@ -112,7 +131,8 @@ function game() {
 newGameButton.addEventListener('click', game);
 
 
-
-
 game();
+
+
+
 
