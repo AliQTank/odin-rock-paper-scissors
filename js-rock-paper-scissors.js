@@ -34,10 +34,12 @@ function singleRound(playerSelection, computerSelection){
         switch (computerSelection) {
             case optionsToChose[1]:
                 cpuCount++
+                cpuScoreMark.textContent = cpuCount;
                 return "you loose, paper beats rock";
                 break;
             case optionsToChose[2]:
                 playerCount++
+                playerScoreMark.textContent = playerCount;
                 return "you win, rock beats scissors";
                 break;
             default:
@@ -48,10 +50,12 @@ function singleRound(playerSelection, computerSelection){
         switch (computerSelection) {
             case optionsToChose[0]:
                 playerCount++
+                playerScoreMark.textContent = playerCount;
                 return "you win!!, paper beats rock";
                 break;
             case optionsToChose[2]:
                 cpuCount++
+                cpuScoreMark.textContent = cpuCount;
                 return "you loose, scissor beats paper";
                 break;
             default:
@@ -62,10 +66,12 @@ function singleRound(playerSelection, computerSelection){
         switch (computerSelection) {
             case optionsToChose[0]:
                 cpuCount++
+                cpuScoreMark.textContent = cpuCount;
                 return "you loose, rock too solid and destroys scissors";
                 break;
             case optionsToChose[1]:
                 playerCount++
+                playerScoreMark.textContent = playerCount;
                 return "you win!!, paper cant take your blade";
                 break;
             default:
@@ -104,6 +110,9 @@ function game() {
 }
 
 newGameButton.addEventListener('click', game);
+
+
+
 
 game();
 
