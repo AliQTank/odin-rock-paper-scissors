@@ -10,6 +10,7 @@ const playerScoreMark = document.querySelector('.player-score');
 const cpuScoreMark = document.querySelector('.computer-score');
 const newGameButton = document.querySelector('#new-game');
 const resultsSection = document.querySelector('#results');
+const divResult =document.querySelector('previus-result');
 let playerCount = 0;
 let cpuCount = 0;
 
@@ -97,7 +98,10 @@ function heroToZero() {
     cpuScoreMark.textContent = cpuCount;
     startNewRound.parentNode.removeChild(startNewRound);
     newGameButton.disabled = false;
+    newGameButton.focus();
 }
+
+
 
 
 /* Write a NEW function called game(). 
@@ -105,34 +109,40 @@ Call the playRound function inside of this one to play a 5 round game
 that keeps score and reports a winner or loser at the end.*/
 
 function game() {
+
     let choseWisely = (prompt('rock, paper or scissors'));
 
-    if (choseWisely === null){
-        return
+        if (choseWisely === null){
+            return
+            } else {
+                choseWisely = choseWisely
+                .toLowerCase()
+                .charAt(0).toUpperCase() + choseWisely.slice(1);
+                
+            }
+        let computerSelected = getComputerChoice();
 
-    } else {
-        choseWisely = choseWisely
-        .toLowerCase()
-        .charAt(0).toUpperCase() + choseWisely.slice(1);
+        if (choseWisely === optionsToChose[0] || choseWisely === optionsToChose[1] || choseWisely === optionsToChose[2]){
+            let result = singleRound(choseWisely, computerSelected);
+            console.log(result);
+            previaMatch.textContent = result;
+            if(playerCount === 1 || cpuCount === 1){
+                endOfGame()
+                startNewRound.focus();
+            } else {
+                newGameButton.focus()
+            }
+        } else {
+            alert("no an option");
+            game()
+        }
+
     }
 
-    let computerSelected = getComputerChoice();
+    
 
-    if (choseWisely === optionsToChose[0] || choseWisely === optionsToChose[1] || choseWisely === optionsToChose[2]){
-        let result = singleRound(choseWisely, computerSelected);
-        console.log(result);
-        previaMatch.textContent = result;
-    } else {
-        alert("no an option");
-        game()
-    }
-}
 
 newGameButton.addEventListener('click', game);
 
 
 game();
-
-
-
-
