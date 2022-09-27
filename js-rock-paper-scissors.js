@@ -10,7 +10,7 @@ const playerScoreMark = document.querySelector('.player-score');
 const cpuScoreMark = document.querySelector('.computer-score');
 const newGameButton = document.querySelector('#new-game');
 const resultsSection = document.querySelector('#results');
-const divResult =document.querySelector('previus-result');
+const divResult =document.querySelector('.the-ending');
 let playerCount = 0;
 let cpuCount = 0;
 
@@ -86,7 +86,7 @@ function singleRound(playerSelection, computerSelection){
 function endOfGame(){
     newGameButton.disabled = true;
     startNewRound = document.createElement('button');
-    startNewRound.textContent = 'Start new game';
+    startNewRound.textContent = 'Reset';
     resultsSection.appendChild(startNewRound);
     startNewRound.addEventListener('click', heroToZero)
 }
@@ -97,8 +97,10 @@ function heroToZero() {
     cpuCount = 0;
     cpuScoreMark.textContent = cpuCount;
     startNewRound.parentNode.removeChild(startNewRound);
+    winnerIs.parentNode.removeChild(winnerIs);
     newGameButton.disabled = false;
     newGameButton.focus();
+
 }
 
 
@@ -126,8 +128,17 @@ function game() {
             let result = singleRound(choseWisely, computerSelected);
             console.log(result);
             previaMatch.textContent = result;
-            if(playerCount === 1 || cpuCount === 1){
+            if(playerCount === 1){
                 endOfGame()
+                winnerIs = document.createElement('p');
+                winnerIs.textContent = "player 1 wins!!!";
+                divResult.appendChild(winnerIs);
+                startNewRound.focus();
+            } else if (cpuCount === 1){
+                endOfGame()
+                winnerIs = document.createElement('p');
+                winnerIs.textContent = "machines take over the world!!";
+                divResult.appendChild(winnerIs);
                 startNewRound.focus();
             } else {
                 newGameButton.focus()
@@ -138,9 +149,7 @@ function game() {
         }
 
     }
-
-    
-
+   
 
 newGameButton.addEventListener('click', game);
 
