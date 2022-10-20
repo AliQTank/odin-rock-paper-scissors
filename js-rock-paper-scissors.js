@@ -11,25 +11,18 @@ const cpuScoreMark = document.querySelector('.computer-score');
 const newGameButton = document.querySelector('#new-game');
 const resultsSection = document.querySelector('#results');
 const divResult =document.querySelector('.the-ending');
+const allButtons = document.getElementsByTagName('button');
+const divContainer = document.createElement('div');
+const paragraph = document.createElement('p');
 let playerCount = 0;
 let cpuCount = 0;
+let choseWisely;
 
+//adding class to all buttons
 
-
-//ADDEVENTLISTENERS FOR BUTTONS
-
-rockChoice.addEventListener('click', () => {
-    console.log(optionsToChose[0]);
-})
-
-paperChoice.addEventListener('click', () => {
-    console.log(optionsToChose[1]);
-})
-
-scissorsChoice.addEventListener('click', () => {
-    console.log(optionsToChose[2]);
-})
-
+for (var i = 0; i < allButtons.length; i++) {    
+    allButtons[i].className = 'btn btn-dark';
+}
 
 
 //first step to make function of computerchoice   getComputerChoice
@@ -95,28 +88,72 @@ function singleRound(playerSelection, computerSelection){
     }
 }
 
-//function endofgame to disable new game button, herotozero to restart counting
+//function endofgame to disable new game button, 
+
+// function endOfGame(){
+//     newGameButton.disabled = true;
+//     startNewRound = document.createElement('button');
+//     startNewRound.textContent = 'Reset';
+//     resultsSection.appendChild(startNewRound);
+//     startNewRound.addEventListener('click', heroToZero)
+// }
+
+//herotozero to restart counting
 //pending function to apply function after one winner 
 
-function endOfGame(){
-    newGameButton.disabled = true;
-    startNewRound = document.createElement('button');
-    startNewRound.textContent = 'Reset';
-    resultsSection.appendChild(startNewRound);
-    startNewRound.addEventListener('click', heroToZero)
-}
+// function heroToZero() {
+//     playerCount = 0;
+//     playerScoreMark.textContent = playerCount;
+//     cpuCount = 0;
+//     cpuScoreMark.textContent = cpuCount;
+//     startNewRound.parentNode.removeChild(startNewRound);
+//     winnerIs.parentNode.removeChild(winnerIs);
+//     newGameButton.disabled = false;
+//     newGameButton.focus();
 
-function heroToZero() {
+// }
+
+
+/************************************************** */
+
+
+//let computerSelected = getComputerChoice();
+
+//ADDEVENTLISTENERS FOR BUTTONS
+rockChoice.addEventListener('click', () => {
+    console.log(optionsToChose[0]);
+    choseWisely = optionsToChose[0];
+    let computerSelected = getComputerChoice();
+    //console.log(singleRound(choseWisely, computerSelected));
+    previaMatch.textContent = singleRound(choseWisely, computerSelected);
+    
+})
+
+paperChoice.addEventListener('click', () => {
+    console.log(optionsToChose[1]);
+    choseWisely = optionsToChose[1];
+    let computerSelected = getComputerChoice();
+    //console.log(singleRound(choseWisely, computerSelected));
+    previaMatch.textContent = singleRound(choseWisely, computerSelected);
+})
+
+scissorsChoice.addEventListener('click', () => {
+    console.log(optionsToChose[2]);
+    choseWisely = optionsToChose[2];
+    let computerSelected = getComputerChoice();
+    //console.log(singleRound(choseWisely, computerSelected));
+    previaMatch.textContent = singleRound(choseWisely, computerSelected);
+})
+
+
+newGameButton.addEventListener('click', () => {
+    console.log("new game called");
+    playerScoreMark.textContent = 0;
     playerCount = 0;
-    playerScoreMark.textContent = playerCount;
+    cpuScoreMark.textContent = 0;
     cpuCount = 0;
-    cpuScoreMark.textContent = cpuCount;
-    startNewRound.parentNode.removeChild(startNewRound);
-    winnerIs.parentNode.removeChild(winnerIs);
     newGameButton.disabled = false;
-    newGameButton.focus();
-
-}
+})
 
 
 
@@ -125,48 +162,5 @@ function heroToZero() {
 Call the playRound function inside of this one to play a 5 round game 
 that keeps score and reports a winner or loser at the end.*/
 
-function game() {
-
-    let choseWisely = (prompt('rock, paper or scissors'));
-
-        if (choseWisely === null){
-            return
-            } else {
-                choseWisely = choseWisely
-                .toLowerCase()
-                .charAt(0).toUpperCase() + choseWisely.slice(1);
-                
-            }
-        let computerSelected = getComputerChoice();
-
-        if (choseWisely === optionsToChose[0] || choseWisely === optionsToChose[1] || choseWisely === optionsToChose[2]){
-            let result = singleRound(choseWisely, computerSelected);
-            console.log(result);
-            previaMatch.textContent = result;
-            if(playerCount === 1){
-                endOfGame()
-                winnerIs = document.createElement('p');
-                winnerIs.textContent = "player 1 wins!!!";
-                divResult.appendChild(winnerIs);
-                startNewRound.focus();
-            } else if (cpuCount === 1){
-                endOfGame()
-                winnerIs = document.createElement('p');
-                winnerIs.textContent = "machines take over the world!!";
-                divResult.appendChild(winnerIs);
-                startNewRound.focus();
-            } else {
-                newGameButton.focus()
-            }
-        } else {
-            alert("no an option");
-            game()
-        }
-
-    }
-   
-
-newGameButton.addEventListener('click', game);
 
 
-game();
