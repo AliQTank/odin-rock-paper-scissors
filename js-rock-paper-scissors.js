@@ -16,6 +16,21 @@ let cpuCount = 0;
 
 
 
+//ADDEVENTLISTENERS FOR BUTTONS
+
+rockChoice.addEventListener('click', () => {
+    console.log(optionsToChose[0]);
+})
+
+paperChoice.addEventListener('click', () => {
+    console.log(optionsToChose[1]);
+})
+
+scissorsChoice.addEventListener('click', () => {
+    console.log(optionsToChose[2]);
+})
+
+
 
 //first step to make function of computerchoice   getComputerChoice
 
