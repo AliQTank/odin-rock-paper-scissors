@@ -12,6 +12,7 @@
      crossorigin="anonymous">
 </head>
 <body>
+    
     <header id="main-header" class="bg-dark text-white p-4 mb-3 text-center">
         <div id="container">
             <section id="introspective">
@@ -20,32 +21,40 @@
 
         </div>
     </header>
+    <div class="container">
+        <div id="main" class="card card body">
+            <section id="selectors" class="p-4">
+                <button class="weapons" id="ROCK">Rock</button>
+                <button class="weapons" id="PAPER">Paper</button>
+                <button class="weapons" id="SCISSORS">Scissors</button>
+            </section>
+            <section id="results" class="p-4">
+                <div class="previus-result">
+                    <p id="previous-match" class="previa-match"></p>
+                </div>
+                <div id="players">
+                    <div class="player">
+                        <p>player 1 : <span></span> </p>
+                        <p class="player-score">0</p>
+                    </div>
+                    <div class="computer">
+                        <p>CPU : <span></span> </p>
+                        <p class="computer-score">0</p>
+                    </div>
+                </div>
+                <div class="the-ending">
+                    <button id="new-game">New Game</button>
+                </div>
+            </section>
+
+        </div>
+       
+            <script src="js-rock-paper-scissors.js"></script>
+        
+    </div>
     
 
-    <section id="selectors">
-        <button class="weapons" id="ROCK">Rock</button>
-        <button class="weapons" id="PAPER">Paper</button>
-        <button class="weapons" id="SCISSORS">Scissors</button>
-    </section>
-    <section id="results">
-        <div class="previus-result">
-            <p id="previous-match" class="previa-match"></p>
-        </div>
-        <div id="players">
-            <div class="player">
-                <p>player 1 : <span></span> </p>
-                <p class="player-score">0</p>
-            </div>
-            <div class="computer">
-                <p>CPU : <span></span> </p>
-                <p class="computer-score">0</p>
-            </div>
-        </div>
-        <div class="the-ending">
-            <button id="new-game">New Game</button>
-        </div>
-    </section>
-        <script src="js-rock-paper-scissors.js"></script>
+    
     
 </body>
 </html>
