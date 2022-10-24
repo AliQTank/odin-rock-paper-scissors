@@ -128,6 +128,8 @@ rockChoice.addEventListener('click', () => {
     let computerSelected = getComputerChoice();
     //console.log(singleRound(choseWisely, computerSelected));
     previaMatch.textContent = singleRound(choseWisely, computerSelected);
+    playChooses.textContent = choseWisely;
+    cpuChooses.textContent = computerSelected;
     
 })
 
@@ -137,6 +139,8 @@ paperChoice.addEventListener('click', () => {
     let computerSelected = getComputerChoice();
     //console.log(singleRound(choseWisely, computerSelected));
     previaMatch.textContent = singleRound(choseWisely, computerSelected);
+    playChooses.textContent = choseWisely;
+    cpuChooses.textContent = computerSelected;
 })
 
 scissorsChoice.addEventListener('click', () => {
@@ -145,6 +149,8 @@ scissorsChoice.addEventListener('click', () => {
     let computerSelected = getComputerChoice();
     //console.log(singleRound(choseWisely, computerSelected));
     previaMatch.textContent = singleRound(choseWisely, computerSelected);
+    playChooses.textContent = choseWisely;
+    cpuChooses.textContent = computerSelected;
 })
 
 
@@ -155,6 +161,8 @@ newGameButton.addEventListener('click', () => {
     cpuScoreMark.textContent = 0;
     cpuCount = 0;
     newGameButton.disabled = false;
+    playChooses.textContent = "";
+    cpuChooses.textContent = "";
 })
 
 
