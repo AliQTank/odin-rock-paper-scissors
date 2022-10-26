@@ -1,43 +1,31 @@
-/* lets make this fucking project baby */
+//SELECTORS
 
-
-//SELECTORS SECTION
+const allButtons = document.getElementsByTagName('button');
+const buttonsOfGame = document.querySelectorAll('#selectors button');
+const newGameButton = document.querySelector('#new-game');
 const rockChoice = document.querySelector('#ROCK');
 const paperChoice = document.querySelector('#PAPER');
 const scissorsChoice = document.querySelector('#SCISSORS');
 const previaMatch = document.querySelector('.previa-match');
 const playerScoreMark = document.querySelector('.player-score');
 const cpuScoreMark = document.querySelector('.computer-score');
-const newGameButton = document.querySelector('#new-game');
-const resultsSection = document.querySelector('#results');
-const divResult =document.querySelector('.the-ending');
-const allButtons = document.getElementsByTagName('button');
 const playChooses = document.querySelector('.player span');
 const cpuChooses = document.querySelector('.computer span');
-const divContainer = document.createElement('div');
-const paragraph = document.createElement('p');
+const divResult = document.querySelector('.the-ending');
 let playerCount = 0;
 let cpuCount = 0;
 let choseWisely;
+let optionsToChose = ["Rock", "Paper", "Scissors"];
 
-//adding class to all buttons
-
-for (var i = 0; i < allButtons.length; i++) {    
-    allButtons[i].className = 'btn btn-dark';
+for (button of allButtons) {
+    button.className = 'btn btn-dark';
 }
 
-
-//first step to make function of computerchoice   getComputerChoice
-
-let optionsToChose = ["Rock", "Paper", "Scissors"];
 
 function getComputerChoice(){
     let randomChoiceFormula = Math.floor(Math.random() * optionsToChose.length);
-
     return optionsToChose[randomChoiceFormula];
 }
-
-//wirte a function with two parameters, playerselection and computerselection
 
 function singleRound(playerSelection, computerSelection){
     if (playerSelection === optionsToChose[0] ){
@@ -90,87 +78,76 @@ function singleRound(playerSelection, computerSelection){
     }
 }
 
-//function endofgame to disable new game button, 
-
-// function endOfGame(){
-//     newGameButton.disabled = true;
-//     startNewRound = document.createElement('button');
-//     startNewRound.textContent = 'Reset';
-//     resultsSection.appendChild(startNewRound);
-//     startNewRound.addEventListener('click', heroToZero)
-// }
-
-//herotozero to restart counting
-//pending function to apply function after one winner 
-
-// function heroToZero() {
-//     playerCount = 0;
-//     playerScoreMark.textContent = playerCount;
-//     cpuCount = 0;
-//     cpuScoreMark.textContent = cpuCount;
-//     startNewRound.parentNode.removeChild(startNewRound);
-//     winnerIs.parentNode.removeChild(winnerIs);
-//     newGameButton.disabled = false;
-//     newGameButton.focus();
-
-// }
-
-
-/************************************************** */
-
-
-//let computerSelected = getComputerChoice();
-
-//ADDEVENTLISTENERS FOR BUTTONS
-rockChoice.addEventListener('click', () => {
-    console.log(optionsToChose[0]);
-    choseWisely = optionsToChose[0];
-    let computerSelected = getComputerChoice();
-    //console.log(singleRound(choseWisely, computerSelected));
-    previaMatch.textContent = singleRound(choseWisely, computerSelected);
-    playChooses.textContent = choseWisely;
-    cpuChooses.textContent = computerSelected;
-    
-})
-
-paperChoice.addEventListener('click', () => {
-    console.log(optionsToChose[1]);
-    choseWisely = optionsToChose[1];
-    let computerSelected = getComputerChoice();
-    //console.log(singleRound(choseWisely, computerSelected));
-    previaMatch.textContent = singleRound(choseWisely, computerSelected);
-    playChooses.textContent = choseWisely;
-    cpuChooses.textContent = computerSelected;
-})
-
-scissorsChoice.addEventListener('click', () => {
-    console.log(optionsToChose[2]);
-    choseWisely = optionsToChose[2];
-    let computerSelected = getComputerChoice();
-    //console.log(singleRound(choseWisely, computerSelected));
-    previaMatch.textContent = singleRound(choseWisely, computerSelected);
-    playChooses.textContent = choseWisely;
-    cpuChooses.textContent = computerSelected;
-})
-
-
-newGameButton.addEventListener('click', () => {
+function newGameFunction() {
     console.log("new game called");
     playerScoreMark.textContent = 0;
     playerCount = 0;
     cpuScoreMark.textContent = 0;
     cpuCount = 0;
-    newGameButton.disabled = false;
+    newGameButton.disabled = true;
+    previaMatch.textContent = "";
     playChooses.textContent = "";
     cpuChooses.textContent = "";
-})
+    winnerIs.parentNode.removeChild(winnerIs);
+
+    for (button of buttonsOfGame) {
+        button.style.display ='inline';
+        button.disabled = false;
+    }
+
+}
+
+function chosenRock() {
+    console.log(optionsToChose[0]);
+    choseWisely = optionsToChose[0];
+    dry001();
+}
+
+function chosenpaper() {
+    console.log(optionsToChose[1]);
+    choseWisely = optionsToChose[1];
+    dry001();
+}
+
+function chosenScissor() {
+    console.log(optionsToChose[2]);
+    choseWisely = optionsToChose[2];
+    dry001();
+}
+
+function dry001() {
+    let computerSelected = getComputerChoice();
+    previaMatch.textContent = singleRound(choseWisely, computerSelected);
+    playChooses.textContent = choseWisely;
+    cpuChooses.textContent = computerSelected;
+    newGameButton.disabled = false;
+    console.log(playerCount);
+    console.log(cpuCount);
+    if (playerCount === 2) {
+        winnerIs = document.createElement('p');
+        winnerIs.textContent = "player 1 wins!!!";
+        divResult.appendChild(winnerIs);
+        for (button of buttonsOfGame) {
+            button.disabled = true;
+        }
+        console.log("gay mover");
+    } else if (cpuCount === 2) {
+        winnerIs = document.createElement('p');
+        winnerIs.textContent = "machines take over the world!!";
+        divResult.appendChild(winnerIs);
+        for (button of buttonsOfGame) {
+            button.disabled = true;
+        }
+        console.log("gay mover");
+    } else {
+        console.log("still playing");
+    }
+}
 
 
+//ADD EVENT LISTENERS   
 
-
-/* Write a NEW function called game(). 
-Call the playRound function inside of this one to play a 5 round game 
-that keeps score and reports a winner or loser at the end.*/
-
-
-
+rockChoice.addEventListener('click', chosenRock);
+paperChoice.addEventListener('click', chosenpaper);
+scissorsChoice.addEventListener('click', chosenScissor);
+newGameButton.addEventListener('click', newGameFunction);
